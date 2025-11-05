@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobDella - Social Media Tasks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Firebase v8 SDKs -->
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js" onload="onFirebaseLoad()"></script>
+    
+    <!-- This script defines the function that will be called once firebase-app.js is loaded -->
+    <script>
+        function onFirebaseLoad() {
+            try {
+                const firebaseConfig = {
+                  apiKey: "AIzaSyDhDlqsb0H5-SBpmUm4XjuISE8vrvxgIso",
+                  authDomain: "jobdella.firebaseapp.com",
+                  projectId: "jobdella",
+                  storageBucket: "jobdella.firebasestorage.app",
+                  messagingSenderId: "381388399866",
+                  appId: "1:381388399866:web:d2431321e7fddaca255543",
+                  measurementId: "G-VMW2S83LHH"
+                };
+                
+                // Initialize Firebase only once. The onload handler guarantees window.firebase exists.
+                if (window.firebase && !window.firebase.apps.length) {
+                    window.firebase.initializeApp(firebaseConfig);
+                    // Set a flag and dispatch an event to signal that Firebase is ready.
+                    window.firebaseReady = true;
+                    document.dispatchEvent(new CustomEvent('firebase-ready'));
+                }
+            } catch (e) {
+                console.error("Critical Firebase initialization failed:", e);
+                // Display a simple error message if initialization fails, so the user isn't left with a blank screen.
+                const root = document.getElementById('root');
+                if (root) {
+                  root.innerHTML = '<div style="padding: 20px; text-align: center; color: red; font-family: sans-serif;"><h1>Application Error</h1><p>Failed to initialize Firebase. The application cannot start. Please check the console for details.</p></div>';
+                }
+            }
+        }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-100 text-slate-800 font-sans">
+<div id="root"></div>
+<script type="module" src="./index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
